@@ -1,0 +1,1041 @@
+% Most of these packages were loaded by RStudio, where I started working on
+% this document using Bookdown.
+
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{longtable,booktabs}
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+
+\title{Mathematical Probability Theorems and Formulas}
+\author{Jason Lim}
+\date{12/10/2020}
+
+\usepackage{amsthm}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{conjecture}{Conjecture}[section]
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\theoremstyle{definition}
+\newtheorem{example}{Example}[section]
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}[section]
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem*{solution}{Solution}
+
+\newcommand{\prob}[1]{\mathbb{P}\left(#1\right)}
+\newcommand{\px}[1]{p_X(#1)}
+\newcommand{\py}[1]{p_Y(#1)}
+\newcommand{\pxx}{p_X(x)}
+\newcommand{\pyy}{p_Y(y)}
+\newcommand{\pxyxy}{p_{X,Y}(x,y)}
+\newcommand{\pxy}[1]{p_{X,Y}(#1)}
+\newcommand{\fxx}{f_X(x)}
+\newcommand{\fx}[1]{f_X(#1)}
+\newcommand{\Fxx}{F_X(x)}
+\newcommand{\Fx}[1]{F_X(#1)}
+\newcommand{\mx}[1]{M_X(#1)}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\E}[1]{\mathbb{E}[#1]}
+\newcommand{\euler}{e}
+\newcommand{\covxy}{\operatorname{cov}(X,Y)}
+\newcommand{\cov}[1]{\operatorname{cov}\left(#1\right)}
+\newcommand{\varx}{\operatorname{var}(X)}
+\newcommand{\var}[1]{\operatorname{var}\left(#1\right)}
+\newcommand{\sst}{\subset}
+\newcommand{\sse}{\subseteq}
+\newcommand{\ddt}{\frac{d}{dt}}
+\newcommand{\ber}[1]{\sim\text{ Bernoulli}\left( #1 \right)}
+\newcommand{\bin}[1]{\sim\text{ Binomial}\left( #1 \right)}
+\newcommand{\nbin}[1]{\sim\text{ Negative Binomial}\left( #1 \right)}
+\newcommand{\pssn}[1]{\sim\text{ Poisson}\left( #1 \right)}
+\newcommand{\gmma}[1]{\sim\text{ Gamma}\left( #1 \right)}
+\newcommand{\unif}[1]{\sim\text{ Uniform}\left(\left[ #1 \right]\right)}
+\newcommand{\expn}[1]{\sim\text{ Exponential}\left( #1 \right)}
+\newcommand{\norm}[2]{\sim\mathcal{N}\left( #1, #2 \right)}
+
+\begin{document}
+\maketitle
+
+{
+  \setcounter{tocdepth}{2}
+  \tableofcontents
+}
+
+\pagebreak
+
+\hypertarget{settheory}{
+  \section{Set Theory}\label{settheory}}
+
+\subsection{De Morgan's Laws}
+
+Suppose $\{A_j\}_{j=1}^k$ are a collection of sets in $B$, i.e. $A_j\subseteq B\ \forall j=1,\ldots,k$
+\begin{align*}
+  (A\cup B)' & =A'\cap B' \\
+  (A\cap B)' & =A'\cup B'
+\end{align*}
+General form:
+\begin{align*}
+  \left(\bigcup_{j=1}^k A_j\right)'=\bigcap_{j=1}^k A'_j \\
+  \left(\bigcap_{j=1}^k A_j\right)'=\bigcup_{j=1}^k A'_j
+\end{align*}
+
+\hypertarget{probandevents}{
+  \section{Probability and Events}}
+
+\subsection{Probability Space}
+\begin{definition}[Probability space]
+  A \underline{probability space} is a triple $(\Omega, \mathcal{F},\mathbb{P})$ where:
+  \begin{itemize}
+    \item $\Omega$ is a nonempty set called the \underline{static space}.
+    \item $\mathcal{F}$ is a collection of subsets of $\Omega$ (note: $\emptyset, \Omega, \in\mathcal{F}$)
+          \begin{itemize}
+            \item An element $A\in\mathcal{F}$ is called an event and $A\subseteq\Omega$
+            \item (in this course, $\mathcal{F}=\{\text{all subsets of }\Omega\}$
+          \end{itemize}
+    \item A function $\mathbb{P}:\mathcal{F}\longrightarrow[0,1]$ satisfying:
+          \begin{enumerate}
+            \item $\mathbb{P}(A)\geq 0\ \text{for any}\ A\in\mathcal{F}$
+            \item $\mathbb{P}(\Omega)=1$
+            \item If $\{A_j\}_{j=1}^k$ are events such that $A_i\cap A_j=\emptyset$ for $i\neq j$ (mutually exclusive), then
+                  \begin{align*}
+                    \mathbb{P}\left(\bigcup_{j=1}^k A_j\right)      & =
+                    \sum_{j=1}^k\mathbb{P}(A_j)                                 \\
+                    \text{and when}\ k                              & =+\infty, \\
+                    \mathbb{P}\left(\bigcup_{j=1}^\infty A_j\right) & =
+                    \sum_{j=1}^\infty\mathbb{P}(A_j)
+                  \end{align*}
+          \end{enumerate}
+  \end{itemize}
+\end{definition}
+
+\begin{proposition}
+  $\mathbb{P}(\emptyset)=0$. This lets us say if $A\cap B=\emptyset$, $\mathbb{P}(A\cap B=\mathbb{P}(\emptyset)=0$
+\end{proposition}
+
+\begin{proposition}
+  If $A$ is an event, then $A'=\Omega\backslash A$ is an event and\\ $\mathbb{P}(A')=1-\mathbb{P}(A)$
+\end{proposition}
+
+\begin{proposition}
+  If $A\subseteq B$, then $\prob{B\backslash A}=\prob{B}-\prob{A}$
+\end{proposition}
+
+\begin{proposition}
+  If $A\subseteq B$ then $\prob{A}\leq\prob{B}$
+\end{proposition}
+
+\subsection{Inclusion-exclusion principle}
+\begin{theorem}[Inclusion-exclusion principle]
+  For any events $A,B\subseteq\Omega$,
+  \[\prob{A\cup B}=\prob{A}+\prob{B}-\prob{A\cap B}\]
+\end{theorem}
+
+\subsection{Independent events}
+
+\begin{definition}
+  $A,B\subset\Omega$ are \underline{independent} if $\prob{A\cap B}=\prob{A}\prob{B}$. Otherwise, we say that they are \underline{dependent}.
+\end{definition}
+
+\emph{Note: Don't confuse independent with disjoint ($A\cap B=\emptyset$). If $A,B$ are both independent and disjoint, then $\prob{A}=0$ or $\prob{B}=0$.}
+
+\begin{proposition}
+  If $A,B$ are independent events, then so are:
+  \begin{enumerate}
+    \item $A$ and $B'$
+    \item $A'$ and $B'$
+  \end{enumerate}
+\end{proposition}
+
+\begin{definition}
+  We say events $A_1,\ldots,A_n\subseteq\Omega$ are \underline{mutually independent} if, given $1\leq k\leq n$ and $1\leq j_1<j_2<\cdots<j_k\leq n$, we have
+  \[\prob{\bigcap_{l=1}^k A_{j_l}}=\prod_{l=1}^k \prob{A_{j_l}}\]
+\end{definition}
+
+\section{Methods of Enumeration}
+
+\subsection{The multiplication principle}
+
+Let $r\in\mathbb{N}_{>0}$. Suppose that we run $r$ independent experiments and:
+\begin{itemize}
+  \item The first experiment has $n_1$ possible outcomes.
+  \item The second experiment has $n_2$ possible outcomes.
+
+        $\cdots$
+  \item The $r^{th}$ experiment has $n_r$ possible outcomes.
+\end{itemize}
+
+\textbf{Unordered without replacement:} When ignoring order, each chosen set of size $r$ is considered equivalent to all its $r!$ permutations, so the number of distinct possibilities is simply divided by $r!$.
+
+\textbf{Unordered with replacement:} If we take unordered samples of size $r$ from a set of $n$ objects with replacement, then the number of samples is \[_{n+r-1}C_r={n+r-1\choose r}\]
+
+\subsection{The Binomial Theorem}
+
+\begin{theorem}[The Binomial Theorem]
+  If $n\geq 0$, then \[(x+y)^n=\sum_{r=0}^n{n\choose r}x^ry^{n-r}\]
+
+  ${n\choose r}$ shows up in this formula because:
+  \begin{itemize}
+    \item When $(x+y)^n$ is expanded, each part of the resulting sum will have exactly $n$ factors.
+    \item Since multiplication is commutative, two addends are considered equivalent if they contain the same number of x's and y's. For example, $xxxyx=xxyxx$.
+    \item Each possible combination of $r$ x's and $r-n$ y's appears once.
+  \end{itemize}
+
+  Thus the coefficient of $x^ry^{n-r}$ is the number of ways of choosing r x's out of n x's and y's, or ${n\choose r}$
+\end{theorem}
+
+\begin{theorem}[The Multinomial Coefficient]
+  For $1\leq r\leq n$ and $n_1=\dots+n_r=n$. Then, there are
+  \[{n\choose n_1,n_2,\dots,n_r}:=\frac{n!}{n_1!n_2!\cdots n_r!}\]
+  distinguishable permutations.
+\end{theorem}
+
+\section{More Probability}
+
+\begin{definition}[Conditional Probability]
+  Let $B\subseteq\Omega$ be an event so that $\prob{B}\neq 0$. The probability of an event $A\subseteq\Omega$ \underline{conditioned on the event B} is given by \[\prob{A|B}=\frac{\prob{A\cap B}}{\prob{B}}\]
+  \begin{center}"probability that $A$ occurs given $B$ has occurred"\end{center}
+\end{definition}
+
+\begin{theorem}[Properties of the conditional probability]
+  If $B\subseteq\Omega$ is an event such that $\prob{B}=0$, then $\prob{\cdot|B}$ is a probability measure, i.e. $\prob{\cdot|B}:\mathcal{F}\to[0,1]$ satisfies:
+  \begin{enumerate}
+    \item $\prob{\Omega|B}=1$
+    \item (Countable additivity) If $\{A_j\}_{j=1}^k$ are mutually exclusive events, then
+          \[\prob{\bigcup_{j=1}^k A_j\bigg|B}=\sum_{j=1}^k\prob{A_j|B}\]
+          And when $k=+\infty$,
+          \[\prob{\bigcup_{j=1}^\infty A_j\bigg|B}=\sum_{j=1}^\infty\prob{A_j|B}\]
+  \end{enumerate}
+\end{theorem}
+
+\begin{proposition}
+  If $A,B\subseteq \Omega$ are independent and $\prob{B}\neq 0$, then \[\prob{A|B}=\prob{A}\]
+\end{proposition}
+
+\begin{theorem}[The Law of Total Probability]
+  Let $A\subseteq\Omega$ be an event and $\{B_j\}_{j=1}^k\subseteq\Omega$ be mutually exclusive, satisfying $\prob{B_j}\neq 0$ for every $j=1,\dots,k$, and \[A\subseteq\bigcap_{j=1}^kB_j\]
+  Then \begin{align*}
+    \prob{A} & =\prob{A|B_1}\prob{B_1}+\dots+\prob{A|B_k}\prob{B_k} \\
+             & =\sum_{j=1}^k\prob{A|B_j}\prob{B_j}                  \\
+  \end{align*}
+\end{theorem}
+
+\subsection{Bayes' Theorem}
+
+\begin{theorem}[Bayes' Theorem]
+  If $A,B\subseteq\Omega$ are events such that $\prob{A},\prob{B}\neq 0$, then
+  \[\prob{B|A}=\frac{\prob{A|B}\prob{B}}{\prob{A}}\]
+\end{theorem}
+
+\begin{theorem}[Bayes' Theorem v2]
+  If $A\subseteq\Omega$ is an event, $\{B_j\}_{j=1}^k\subseteq\Omega$ are mutually exclusive events so that $\prob{A},\prob{B_j}\neq0$, and \[A\subseteq\bigcap_{j=1}^k B_j\]
+
+  Then for any $1\leq \ell\leq k$, we have
+  \[\prob{B_\ell|A}=\frac{\prob{A|B_\ell}\prob{B_\ell}}{\sum_{j=1}^k\prob{A|B_j}\prob{B_j}}\]
+
+  This follows trivially from Bayes' Theorem and the law of total probability.
+
+\end{theorem}
+
+\section{Random Variables}
+
+\begin{definition}[Random variable]
+  Given a set $S$ and a probability space $(\Omega,\mathcal{F},\mathbb{P})$, a \underline{random variable} is a function \[X:\Omega\to S\]
+
+  Notation: If $x\in s$, and $A\subseteq S$, we write
+  \begin{align*}
+    \prob{X=x}    & :=\prob{\{\omega\in\Omega:X(\omega)=x\}}    \\
+    \prob{X\in A} & :=\prob{\{\omega\in\Omega:X(\omega)\in A\}} \\
+  \end{align*}
+\end{definition}
+
+\begin{definition}[Discrete random variable]
+  A random variable $X:\Omega\to S$ is \underline{discrete} if $S\subseteq\mathbb{R}$ is finite or countable (i.e. in one-to-one correspondence with $\mathbb{N}$)
+
+  We can think of discrete random variables as random numbers.
+\end{definition}
+
+\subsection{PMF and CDF}
+
+Given a discrete random variable $X$ taking values in $S\subseteq\R$, we define:
+\begin{itemize}
+  \item the \underline{probability mass function} (PMF) of $X$ as the function $p_X:S\to[0,1]$ defined by
+        \[p_X(x)=\prob{X=x}\]
+  \item the \underline{cumulative distribution function} (CDF) of $X$ as the function $F_X:S\to[0,1]$ defined by
+        \[F_X(x)=\prob{X\leq x}\]
+  \item We say that two random variables $X$ and $Y$ are \underline{identically distributed} if they have the same CDF and we write $X\sim Y$
+\end{itemize}
+
+\begin{proposition}
+  If $X$ is a discrete random variable and $A\subseteq\R$ is any set, then
+  \[\prob{X\in A}=\sum_{x\in A\cap S}p_X(x)\]
+\end{proposition}
+
+\begin{proposition}
+  if $X$ is a discrete random variable and $A\sse\R$ is any set, then
+  \[F_X(x)=\sum_{\substack{y\in S\\y\leq x}}p_X(y)\]
+\end{proposition}
+
+\begin{proposition}
+  If $X$ is a discrete random variable and $a<b$, then
+  \[\prob{a<x\leq b}=F_X(b)-F_X(a)\]
+\end{proposition}
+
+\subsection{Expected Value}
+
+\begin{definition}
+  If $X$ is a discrete random variable taking values in a countable set $S\sse\R$, its \underline{expected value} is defined to be
+  \[\E{X}=\sum_{x\in s}x\pxx\]
+  provided the sum converges.
+
+  Notation: we also write $\mu_X=\E{X}$
+\end{definition}
+
+\begin{proposition}
+  If $X$ is a discrete random variable taking values in a countable set $S\sse\R$, and $g:S\to\R$ is a function, then the \underline{expected value of $g(X)$} is
+  \[\E{g(X)}=\sum_{x\in S}g(x)\pxx\]
+  provided the sum converges.
+\end{proposition}
+
+\begin{proposition}[Linearity of Expectation]
+  If $X$ is a discrete random variable taking values in a countable set $S\sse\R$. If $a,b\in\R$ and $g,h:S\to\R$, then
+  \[\E{ag(X)+bh(X)}=a\E{g(X)}+b\E{h(X)}\]
+\end{proposition}
+
+\begin{proposition}
+  If $X$ is a discrete random variable taking values in a countable set $S\sse\R$ and $g,h:S\to\R$ such that $g(x)\leq h(x)$ for all $x\in S$, then
+  \[\E{g(X)}\leq\E{h(X)}\]
+\end{proposition}
+
+\subsection{Moment, Variance, and Standard Deviation}
+
+\begin{definition}
+  If $X$ is a discrete random variable taking values in a countable set $S\subseteq \R$ and $b\in\R$, we define the \underline{$r^{th}$ moment of $X$ about $b$} to be\[\E{(X-b)^r}\]
+\end{definition}
+
+\begin{definition}
+  Let $X$ be a discrete random variable. We define the \underline{variance} of $X$ to be \[\text{var}(X)=\E{(X-\E{X})^2}\]
+
+  Whenever is converges, we use the notation $\sigma^2=\varx$
+
+  The \underline{standard deviation} of $X$ is $\sigma_X=\sqrt{\var X}$
+\end{definition}
+
+\begin{proposition}
+  If $X$ is a discrete random variable and $a,b\in\R$, then:
+  \begin{align*}
+    \E{aX+b}   & =a\E{X}+b \\
+    \var{aX+b} & =a^2\varx
+  \end{align*}
+\end{proposition}
+
+\begin{proposition}[Alternate Formula for Variance]
+  If X is a discrete random variable, then \[\varx=\E{X^2}-\E{X}^2\]
+\end{proposition}
+
+\begin{definition}[Moment Generating Function]
+  If $X$ is a discrete random variable, we define the \underline{moment generating} \underline{function} (MGF) of $X$ to be the function \[M_X(t)=\E{e^{tX}},\quad t\in\R\] whenever it exists.
+\end{definition}
+
+\begin{proposition}
+  Let $X$ be a discrete random variable with MGF $M_X(t)$ which is well-defined and smooth for $t\in(-\delta,\delta)$ for some $\delta>0$. Then
+  \[\frac{d^r}{dt^r}M_X\big|_{t=0}=\E{X^r}\quad r\in\{1,2,3,\dots\}\]
+\end{proposition}
+
+\begin{proposition}[Expectation and Variance from MGF]
+  Let $X$ be a discrete random variable with MGF $M_X(t)$ which is well-defined and smooth for $t\in(-\delta,\delta)$ for some $\delta>0$. Then
+  \begin{align*}
+    \frac{d}{dt}\log M_X\big|_{t=0}     & =\E{X} \\
+    \frac{d^2}{dt^2}\log M_X\big|_{t=0} & =\varx
+  \end{align*}
+\end{proposition}
+
+\section{Types of Discrete Random Variables}
+
+\subsection{Bernoulli}
+
+\begin{definition}
+  Let $p\in(0,1)$. We say that a discrete random variable $X$ is a \underline{Bernoulli random variable} and write $X\sim$ Bernoulli($p$) if it has PMF
+  \[\pxx=\begin{cases}
+      p   & \text{if }x=1 \\
+      1-p & \text{if }x=0 \\
+    \end{cases}\]
+\end{definition}
+
+\subsection{Uniform (Discrete)}
+
+\begin{definition}
+  Let $m\geq 1$. A discrete random variable $X$ is uniformly distributed on $\{1,2,\dots,m\}$ and we write \[X\sim\text{Uniform}(\{1,2,\dots,m\})\] if it has PMF \[p_X(x)=\frac{1}{m}\text{ for }x\in\{1,2,\dots,m\}\]
+
+  If $X\sim\text{Uniform}(\{1,2,\dots,m\})$, then it has CDF
+  \[F_X(x)=
+    \begin{cases}
+      0           & \text{if }x<1                               \\
+      \frac{k}{m} & \text{if }k\leq x<k+1,\ k\in\{1,\dots,m-1\} \\
+      1           & \text{if }x\geq m                           \\
+    \end{cases}
+  \]
+\end{definition}
+
+\subsection{Binomial}
+
+\begin{definition}[Bernoulli trial]
+  An experiment that has probability $p\in(1,0)$ of success and probability $(1-p)$ of failure
+\end{definition}
+
+\begin{definition}
+  If $X~$Binomial($n,p$) then it has PMF
+  \[p_X(x)={n\choose x}p^x(1-p)^{n-x}\]
+  for $x\in\{0,1,\dots,n\}$
+\end{definition}
+
+\begin{proposition}
+  If X~Binomial($n,p$), then its MGF is
+  \[M_X(t)=(1-p+pe^t)^n\]
+\end{proposition}
+
+\begin{proposition}
+  If X~Binomial($n,p$), then
+  \[\E{X}=np\]
+\end{proposition}
+
+\begin{proposition}
+  If X~Binomial($n,p$), then
+  \[\varx=np(1-p)\]
+\end{proposition}
+
+\subsection{Geometric}
+
+\begin{definition}
+  Suppose we run independent, identical Bernoulli trials with probability $p\in(0,1)$ of success.
+  \begin{itemize}
+    \item Let $X$ be the trial on which we first achieve success.
+    \item Then $X$ is a discrete rv taking values in $S=\{1,2,3,\dots\}$
+    \item We say that $X$ is a \underline{Geometric random variable} with parameter $p$ and write $X\sim$ Geometric($p$)
+  \end{itemize}
+\end{definition}
+
+\begin{proposition}
+  If $X\sim$ Geometric($p$), then its PMF is
+  \[\pxx=(1-p)^{x-1}p\text{ for }x\in\{1,2,3,\dots\}\]
+\end{proposition}
+
+\begin{proposition}
+  If $X\sim$ Geometric($p$) and $k$ an integer, then
+  \[\prob{X \leq k} = 1 - \left(1-p\right)^k \]
+\end{proposition}
+
+\begin{proposition}
+  If $X\sim$ Geometric($p$), then its MGF is
+  \[
+    \mx{t} =\frac{pe^t}{1-(1-p)e^t}
+  \]
+  for $t<-\log(1-p)$
+\end{proposition}
+
+\begin{proposition}
+  If $X\sim$ Geometric($p$), then its mean is
+  \[\E{X}=\frac{1}{p}\]
+\end{proposition}
+
+\begin{proposition}
+  If $X\sim$ Geometric($p$), then its variance is
+  \[\varx=\frac{1-p}{p^2}\]
+\end{proposition}
+
+\subsection{Negative Binomial}
+
+\begin{definition}
+  \begin{itemize}
+    \item Suppose we run independent, identical Bernoulli trials with probability $p\in(0,1)$ of success.
+    \item Let $r\geq 1$ and $X$ be the trial on which we first achieve the $r$th success.
+    \item Then $X$ takes values in $S=\{r,r+1,r+2,\dots\}$
+    \item We say that $X$ is a \underline{negative binomial random variable} with parameter $r$, $p$ and write $X\sim$ Negative Binomial($r,p$)
+    \item If $r=1$, then $X\sim$ Negative Binomial($1,p$) $\sim$ Geometric($p$)
+  \end{itemize}
+\end{definition}
+
+\begin{proposition}
+  If $X\sim$ Negative Binomial($r,p$), then its PMF is
+  \[\pxx={x-1\choose r-1}p^r(1-p)^{x-r}\quad\text{ if }x\in\{r,r+1,\dots\}\]
+\end{proposition}
+
+\begin{lemma}
+  If $r\geq1$ is an integer $0<s<1$, then
+  \[\left(\frac{1}{1-s}\right)^r=\sum_{x=r}^\infty {x-1\choose r-1}s^{x-r}\]
+\end{lemma}
+
+\begin{proposition}
+  If $X\nbin{r,p}$, then its MGF is
+  \[\mx{t}=\left(\frac{pe^t}{1-(1-p)e^t}\right)^r\quad\text{ if }t<\log(1-p)\]
+\end{proposition}
+
+\begin{proposition}
+  If $X\nbin{r,p}$, then
+  \begin{align*}
+    \E{X} & =\frac{r}{p}        \\
+    \varx & =\frac{r(1-p)}{p^2} \\
+  \end{align*}
+\end{proposition}
+
+\subsection{Poisson}
+
+\textbf{Assumptions:}
+\begin{itemize}
+  \item We make the following assumptions about the arrivals:
+        \begin{enumerate}
+          \item If the time intervals $(t_1,t_2],(t_3,t_3],\dots,(t_n,t_{n+1}]$ are \textit{disjoint}, then the number of arrivals in each time intervals are \textit{independent}
+          \item if $h=t_2-t_1>0$ is sufficiently small, then the probability of exactly one arrival in the time interval $(t_1,t_2]$ is $\lambda h$
+          \item if $h=t_2-t_1>0$ is sufficiently small, then the probability of two or more arrivals in the time interval $(t_1,t_2]$ converges rapidly to zero as $h\to0$
+        \end{enumerate}
+  \item An arrival process satisfying these assumptions is called an \underline{approximate} \underline{Poisson process}.
+  \item The random variable $X$ is called a \underline{Poisson random variable} and we write $X\pssn{\lambda}$
+\end{itemize}
+
+\begin{proposition}
+  If $X\pssn{\lambda}$, then its PMF is
+  \[\pxx=e^{-\lambda}\frac{\lambda^x}{x!}\quad\text{if }x\in\{0,1,2,\dots\}\]
+\end{proposition}
+
+\begin{proposition}
+  Consider an approximate Poisson process with rate $\lambda>0$ per unit time. Let $X$ be the number of arrivals in a time of length $T>0$ units. Then $X\pssn{\lambda T}$
+\end{proposition}
+
+\begin{proposition}
+  If $\lambda>0$ and $X\pssn{\lambda T}$, then its MGF is
+  \[\mx{t}=e^{\lambda(e^t-1)}\]
+\end{proposition}
+
+\begin{proposition}
+  If $\lambda>0$ and $X\pssn{\lambda T}$, then
+  \begin{align*}
+    \E{X} & =\lambda \\
+    \varx & =\lambda
+  \end{align*}
+\end{proposition}
+
+\section{Continuous Random Variables}
+
+\begin{definition}
+  Let $S\sse\R$, and let $X:\Omega\to S$ be a random variable.
+  \begin{itemize}
+    \item We define the \underline{cumulative distribution function} of $X$,\newline $F_X:\R\to[0,1]$ by
+          \[\Fxx=\prob{X\leq x}\]
+          We have
+          \[\lim_{x\to-\infty}\Fxx=0\text{ and }\lim_{x\to\infty}\Fxx=1\]
+    \item We say that $X$ is a \underline{continuous random variable} if there exists a non-negative integrable function $f_X:\R\to[0,\infty)$ such that
+          \[\prob{X\leq x}=\Fxx=\int_{-\infty}^x\fx{t}dt\]
+    \item We call $f_X$ a \underline{probability density function} for $X$.
+  \end{itemize}
+\end{definition}
+
+\begin{proposition}
+  If $X$ is a continuous random variable with PDF\newline $f_X:\R\to[0,\infty)$, then
+  \[\int_{-\infty}^\infty \fxx dx=1\]
+\end{proposition}
+
+\begin{proposition}
+  \textbf{Proposition:} If $X$ is a continuous random variable with PDF\newline $f_X:\R\to[0,\infty)$ and $a<b$, then
+  \[\prob{a<X\leq B}=\int_a^b \fxx dx\]
+  as a consequence of the statement\quad$\prob{a<X\leq B}=\Fx{b}-\Fx{a}$
+\end{proposition}
+
+\begin{proposition}
+  If $X$ is a continuous random variable with PDF\newline $f_X:\R\to[0,\infty)$, then for any $x\in\R$
+  \[\prob{X=x}=0\]
+  In particular, if $a<b$, then
+  \[\prob{a\leq X \leq b}=\prob{a< X \leq b}=\prob{a\leq X < b}=\prob{a< X < b}\]
+\end{proposition}
+
+\subsection{Expectation}
+
+\begin{definition}
+  If $X$ is a continuous random variable with PDF $\fxx$, we define its expected value to be
+  \[\E{X}=\int_{-\infty}^\infty x\fxx dx\]
+  More generally, if $g:\R\to\R$ is any function, then
+  \[\E{g(X)}=\int_{-\infty}^\infty g(x)\fxx dx\]
+\end{definition}
+
+\begin{proposition}
+  Let $X$ be a continuous random variable.
+  \begin{itemize}
+    \item if $a\in\R$ is a constant, then
+          \[\E{a}=a\]
+    \item if $a,b\in\R$ are constants and $g,h:\R\to\R$ are functions, then
+          \[\E{ag(X)=bh(X)}=a\E{g(X)}+b\E{h(X)}\]
+    \item If $g(x)\leq h(x)$ for all $x\in\R$, then
+          \[\E{g(X)}\leq\E{h(X)}\]
+  \end{itemize}
+\end{proposition}
+
+\subsection{Moment, Variance}
+
+\begin{definition}
+  If $X$ is a continuous random variable, then we define its \underline{variance} to be
+  \[\varx=\E{(X-\E{X})^2}\]
+  We will use the notation $\sigma^2_X=\varx$ and define the \underline{standard deviation} to be $\sigma_X=\sqrt{\varx}$. We also have
+  \[\varx=\E{X^2}-(\E{X})^2\]
+\end{definition}
+
+\begin{definition}
+  If $X$ is a continuous random variable we define its \underline{moment generating function} to be
+  \[\mx{t}=\E{e^{tX}}\]
+  for all $t\in\R$ for which this makes sense.
+\end{definition}
+
+\begin{proposition}
+  If $\mx{t}$ is smooth on some interval $(-\delta,\delta)$ where $\delta>0$, then for all $n\geq 0$,
+  \begin{align*}
+    \frac{d^n}{dt^n}M_X\big|_{t=0}      & =\E{X^n} \\
+    \frac{d}{dt}\log M_X\big|_{t=0}     & =\E{X}   \\
+    \frac{d^2}{dt^2}\log M_X\big|_{t=0} & =\varx
+  \end{align*}
+\end{proposition}
+
+\section{Types of Continuous Random Variables}
+
+\subsection{Uniform}
+
+\begin{definition}
+  [Uniform random variable]
+  \begin{itemize}
+    \item Let $a<b$
+    \item Pick a point $X$ at random from the interval $[a,b]$
+    \item If we have an equal probability of picking every point in $[a,b]$, we say $X$ is \underline{uniformly distributed} on the interval $[a,b]$
+    \item We say $X\unif{a,b}$
+  \end{itemize}
+\end{definition}
+
+\begin{proposition}
+  If $a<b$ and $X\unif{a,b}$, then it has PDF
+  \[\fxx=\begin{cases}
+      \frac{1}{b-a} & \text{if }x\in(a,b) \\
+      0             & \text{otherwise}
+    \end{cases}\]
+\end{proposition}
+
+\begin{proposition}
+  The CDF of $X\unif{a,b}$ is $\Fxx=\prob{X\leq x}$, where
+  \[\Fxx=\begin{cases}
+      0               & \text{if }x\leq a \\
+      \frac{x-a}{b-a} & \text{if }a<x<b   \\
+      1               & \text{if }x\geq 0 \\
+    \end{cases}\]
+\end{proposition}
+
+\begin{proposition}[Variance for Uniform]
+  Let $a<b$ and $X\unif{a,b}$. Then,
+  \[\varx=\frac{b-a}{12}\]
+\end{proposition}
+
+\subsection{Exponential}
+
+\begin{definition}
+  The exponential distribution
+  \begin{itemize}
+    \item Consider an approximate Poisson process with rate $\lambda>0$ per unit time
+    \item Let $X$ be the time of the first arrival
+    \item We say that $X$ is \underline{exponentially distributed} with mean waiting time $\theta = \frac{1}{\lambda}$ and write $X\expn{\theta}$
+  \end{itemize}
+\end{definition}
+
+\begin{proposition}
+  If $\theta>0$ and $X\expn{\theta}$, then it has PDF
+  \[\fxx=\frac{1}{\theta}e^{-\frac{x}{\theta}}\]
+\end{proposition}
+
+\begin{proposition}
+  If $\theta>0$ and $X\expn{\theta}$, then its MGF is
+  \[\mx{t}=\frac{1}{1-\theta t}\quad\text{if }t<\frac{1}{\theta}\]
+\end{proposition}
+
+\begin{proposition}
+  If $\theta>0$ and $X\expn{\theta}$, then it has mean and variance
+  \begin{align*}
+    \E{X} & =\theta   \\
+    \varx & =\theta^2
+  \end{align*}
+\end{proposition}
+
+\subsection{Gamma}
+
+\begin{itemize}
+  \item Consider an approximate Poisson process with rate $\lambda>0$ per unit time
+  \item Let $\alpha\geq 1$ be an integer, and let $X$ be the time of the $\alpha$th arrival
+  \item We say that $X$ is \underline{gamma distributed} with mean parameters $\alpha$ and $\theta=\frac{1}{\lambda}$ and write $X\gmma{\alpha,\theta}$
+  \item If $X\gmma{1,\theta}$, then $X\expn{\theta}$
+\end{itemize}
+
+If $\alpha\geq 1$ is an integer, $\theta>0$ and $X\gmma{\alpha,\theta}$, $X$ has PDF
+\[\fxx=\frac{1}{\theta^\alpha (\alpha - 1)!} x^{\alpha-1}e^{-\frac{x}{\theta}}\]
+Its MGF, mean, and variance are
+\begin{align*}
+  \mx{t} & =\frac{1}{(1-\theta t)^\alpha} & \text{if }t<\frac{1}{\theta} \\
+  \E{X}  & =\alpha\theta                                                 \\
+  \varx  & =\alpha\theta^2                                               \\
+\end{align*}
+
+\subsection{Normal}
+
+\begin{definition}
+  We say a continuous random variable $X$ is normally distributed with mean $\mu \in \mathbb{R}$ and variance $\sigma^2 > 0$ if it has PDF:
+
+  \[\fxx = \frac{1}{\sqrt{2\pi\sigma^2}}\euler^{-\frac{(x - \mu)^2}{2\sigma^2}}\] for $x \in \mathbb{R}$
+
+\end{definition}
+
+\begin{proposition}[MGF for Normal]
+  If $X\norm{\mu}{\sigma^2}$, then it has MGF:
+  \[\mx{t} = \euler^{\mu t + \frac{1}{2}\sigma^2 t^2} \text{ for any } t \in \mathbb{R}\]
+\end{proposition}
+
+\begin{proposition}
+  If $X\norm{\mu}{\sigma^2}$, then
+  \begin{align*}
+    \E{X} & =\mu      \\
+    \varx & =\sigma^2
+  \end{align*}
+\end{proposition}
+
+\begin{definition}
+  We define the function
+  \[\Fxx = \Phi (x) = \int_{-\infty}^{x} \frac{1}{\sqrt{2\pi}}\euler^{-\frac{1}{2}t^2} \,dx \]
+\end{definition}
+
+\begin{proposition}
+  If $x \geq 0$, then
+  \[\Phi(-x) = 1 - \Phi(x)\]
+\end{proposition}
+
+\section{Bivariate Probability}
+
+Let $X,Y$ be a pair of discrete random variables taking values in sets $S_X,S_Y\sst\R$. We define their joint PMF by
+\[\pxy{x,y}=\prob{X=x,Y=y}\]
+We define the joint PMFs of $X$ and $Y$ to be
+\begin{align*}
+  \pxx & =\prob{X=x}=\sum_{y\in S_Y} \pxyxy \\
+  \pyy & =\prob{Y=y}=\sum_{x\in S_X} \pxyxy \\
+\end{align*}
+We say that $X,Y$ are independent if
+\[\pxyxy=\pxx\pyy\]
+
+Let $S=S_X\times S_Y$. If $g:S\to\R$, the \underline{expected value of $g(X,Y)$} is
+\[\E{g(X,Y)}=\sum_{(x,y)\in S}g(x,y)\pxyxy\]
+
+This is linear as well:
+\[\E{ag(X,Y)+bh(X,Y)}=a\E{g(X,Y)}+b\E{h(X,Y)}\]
+
+We also have that
+\begin{align*}
+  \E{g(X)} & =\sum_{x\in S_X}g(x)\pxx \\
+  \E{h(Y)} & =\sum_{y\in S_Y}h(y)\pyy \\
+\end{align*}
+
+If $X$ and $Y$ are \textit{independent} discrete random variables, we have
+\[\E{g(X)h(Y)}=\E{g(X)}\E{h(Y)}\]
+
+\subsection{Cauchy-Schwarz Inequality}
+Let $X,Y$ be discrete random variables. Then,
+\[|\E{XY}|\leq\sqrt{\E{X^2}\E{Y^2}}\]
+
+\subsection{Covariance}
+Let $X,Y$ be a pair of discrete random variables taking values. We define the \underline{covariance} of $X,Y$ to be
+\begin{align*}
+  \covxy & =\E{(X-\E{X})(Y-\E{Y})}                     \\
+         & =\sum_{(x,y)\in S} (x-\E{X})(y-\E{Y})\pxyxy
+\end{align*}
+This reduces to:
+\[\covxy=\E{XY}-\E{X}\E{Y}\]
+
+If $X$ is a random variable, then
+\[\cov{X,X}=\varx\]
+
+If $X,Y$ are independent, then $\covxy=0$
+
+If $a,b\in\R$,
+\[\cov{aX,bY}=ab\covxy\]
+
+\subsection{Correlation coefficient}
+
+For discrete random variables $X,Y$, we define the \underline{correlation coefficient} of $X,Y$ to be
+\begin{align*}
+  \rho(X,Y) & =\frac{\covxy}{\sqrt{\varx\var{Y}}} \\
+            & =\frac{\covxy}{\sigma_X\sigma_Y}
+\end{align*}
+
+If $X,Y$ are discrete random variables, then
+\[-1\leq\rho(X,Y)\leq 1\]
+
+\subsection{Conditional Distributions}
+
+\begin{definition}
+  Let $X, Y$ be a pair of discrete random variables taking values in $S_X, S_Y \subseteq \mathbb{R}$, respectively.
+  \begin{itemize}
+    \item For each \underline{fixed} $y \in S_Y$, we define the \underline{random variable} $X|y$ with PMF $p_{X|Y}(x|y) = \prob{X = x| Y = y} $ for $x \in S_X$
+    \item For each \underline{fixed} $x \in S_X$, we define the \underline{random variable} $Y|x$ with PMF $p_{Y|X}(y|x) = \prob{Y = y|X=x} $ for $y \in S_Y$
+  \end{itemize}
+\end{definition}
+
+\begin{proposition}
+  Let $X, Y$ be a pair of discrete random variables taking values in $S_X, S_Y \subseteq \mathbb{R}$, respectively.
+  \begin{itemize}
+    \item For each fixed $y \in S_Y$, we have
+          \[\sum_{x \in S_X} p_{X|Y}(x|y) = 1\]
+    \item For each fixed $x \in S_X$, we have,
+          \[\sum_{y \in S_Y} p_{Y|X}(y|x) = 1\]
+  \end{itemize}
+\end{proposition}
+
+\begin{definition}
+  Let $X, Y$ be a pair of discrete random variables taking values in $S_X, S_Y \subseteq \mathbb{R}$, respectively.
+  \item Define the function $g:S_X \rightarrow \mathbb{R}$ by \[g(x) = \E{Y|x}\]
+  \item We define the conditional expectation of $Y$ conditioned on $X$ to be the random variable \[\E{Y|X} = g(X)\]
+\end{definition}
+
+\begin{theorem}[The Law of Iterated Expectation]
+  Let $X, Y$ be discrete random variables. Then \[\E{\E{Y|X}} = \E{Y}\]
+\end{theorem}
+
+\begin{definition}
+  Let $X, Y$ be a pair of discrete random variables taking values in $S_X, S_Y \subseteq \mathbb{R}$, respectively.
+  \begin{itemize}
+    \item Define the function $h:S_X \rightarrow \mathbb{R}$ by \[h(x) = \var{Y|x}\]
+    \item We define the conditional variance of $Y$ conditioned on $X$ to be the random variable \[\var{Y|X} = h(X)\]
+  \end{itemize}
+\end{definition}
+
+\begin{theorem}[The Law of Total Variance]
+  Let $X, Y$ be discrete random variables. Then \[\E{\var{Y|X}} + \var{\E{Y|X}} = \var{Y}\]
+\end{theorem}
+
+\subsection{Bivariate Distributions of the Continuous Type}
+
+\begin{proposition}
+  If $X, Y$ are continuous random variables with joint PDF $f_{X,Y}(x,y)$, then
+  \[
+    \iint_{\mathbb{R}^2} f_{X,Y}(x,y) \,dx\,dy = 1
+  \]
+\end{proposition}
+
+\begin{definition}
+  If $X, Y$ are continuous random variables with joint PDF $f_{X,Y}(x,y)$, then
+  \begin{itemize}
+    \item the marginal PDF of $X$ to be \[\fxx = \int_{-\infty}^{\infty} f_{X,Y}(x,y) \,dx \]
+    \item the marginal PDF of $Y$ to be \[f_Y(y) = \int_{-\infty}^{\infty} f_{X,Y}(x,y) \,dy \]
+  \end{itemize}
+\end{definition}
+
+\begin{definition}[Independence]
+  Let $X, Y$ be continuous random variables with joint PDF $f_{X,Y}(x,y)$ and marginal PDFs $\fxx$, $f_Y(y)$. \\
+  We say that $X, Y$ are independent if \[ f_{X,Y}(x,y) = \fxx f_Y(y)\] for all $(x, y) \in \mathbb{R}^2$.
+\end{definition}
+
+\section{Several Random Variables}
+
+\begin{definition}
+  Let $X_1, X_2, \cdots, X_n$ be discrete random variables taking values in sets $S_1, S_2, \cdots, S_n \in \R$ and let $ S = S_1 \times S_2 \times \cdots \times S_n \subseteq \R^n$.
+  Then $X_1, X_2, \cdots, X_n$ have the joint PMF:
+  \[p_{X_1, X_2, \cdots, X_n}(x_1, x_2, \cdots, x_n) = \prob{X_1 = x_1, X_2 = x_2, \cdots, X_n = x_n}\]
+  These variables are independent if $p_{X_1, X_2, \cdots, X_n}(x_1, x_2, \cdots, x_n) = p_{X_1}(x_1)p_{X_2}(x_2)\cdots p_{X_n}(x_n)$
+  for all $(x_1, x_2, \cdots, x_n) \in S$.
+\end{definition}
+
+\begin{proposition}[Linearity of Expectation]
+  Let $X_1, X_2, \cdots, X_n$ be discrete or continuous random variables. Let $a_1, a_2, \cdots, a_n \in \R$ and let
+  $Y = a_1X_1 + a_2X_2 + \cdots + a_nX_n$. Then
+  \[\E{Y} = a_1\E{X_1} + a_2\E{X_2} + \cdots + a_n\E{X_n}\]
+\end{proposition}
+
+\begin{definition}[Variance]
+  Let $X_1, X_2, \cdots, X_n$ be discrete or continuous random variables. Let $a_1, a_2, \cdots, a_n \in \R$ and let
+  $Y = a_1X_1 + a_2X_2 + \cdots + a_nX_n$. Then
+  \[\var{Y} = \sum_{j = 1}^{n}\sum_{k = 1}^{n}a_ja_k\cov{X_j, X_k}  \]
+\end{definition}
+
+\subsection{i.i.d Variables}
+
+\begin{definition}
+  Let $X_1, X_2, \cdots, X_n$ be independent and identically distributed. Then we define the sample sum
+  \[S_n = \sum_{j = 1}^{n} X_j = X_1 + X_2 + \cdots + X_n \]
+  And sample average
+  \[\bar{x} = \frac{1}{n} \sum_{j = 1}^{n} X_j = \frac{1}{n}S_n\]
+\end{definition}
+
+\begin{example}
+  Let $X_1, X_2, \cdots, X_n$ be independent and identically distributed with mean $\mu$ and variance $\sigma^2$.
+  \[\E{S_n} = n\mu\]
+  \[\E{\bar{x}} = \mu\]
+  \[\var{S_n} = n\sigma^2\]
+  \[\var{\bar{x}} = \frac{\sigma^2}{n}\]
+\end{example}
+
+\section{Transformation of Random Variables}
+
+\subsection{Single Variable}
+
+\begin{proposition}
+  Let $X$ be a continuous random variable with PDF $\fxx$
+  \begin{itemize}
+    \item Let $ X \subseteq \mathbb{R}$ so that $\fxx = 0$ for all $x \in \R \backslash S$
+    \item Let $u: \R \rightarrow \R$ be smooth and satisfy $u\prime(x) > 0$ or $u\prime(x) < 0$ for all $x \in S$.
+    \item Then $Y = u(Y)$ has PDF
+  \end{itemize}
+  \[ f_Y(y) = \left\lvert \frac{d}{dx} u^{-1}(y)\right\rvert \cdot \fx{ u^{-1}(y)} \]
+\end{proposition}
+
+\begin{theorem} [Change of Variable]
+  \begin{itemize}
+    \item Let $ S \subseteq \mathbb{R}^2$ and $f: S \rightarrow \R$ be continuous.
+    \item Let $u: \R^2 \rightarrow \R^2$ be smooth and invertible and take $(z, w) = u(x, y)$
+    \item If $v = u^{-1}$, so that $(x,y) = v(z,w)$, then
+          \[\iint_{S}f(x,y) \,dx\,dy = \iint_{u(S)}f(v(z,w))\left\lvert \frac{\partial (x, y)}{\partial (z, w)}\right\rvert \,dz\,dw \]
+  \end{itemize}
+\end{theorem}
+
+\subsection{Double Variable}
+
+\begin{proposition}
+  \begin{itemize}
+    \item Let $ X, Y$ be continuous random variables with joint PDF $f_{X,Y}(x,y)$
+    \item Let $u: \R^2 \rightarrow \R^2$ be smooth and invertible, with inverse $v(z, w)$
+    \item Then, the random variables $(Z,W) = u(X, Y)$ are continuous and have joint PDF
+          \[ f_{Z, W}(z,w) = f_{X, Y}(z(z,w))\left\lvert \frac{\partial (x, y)}{\partial (z, w)}\right\rvert \]
+  \end{itemize}
+\end{proposition}
+
+\section{The Law of Large Numbers and Convergence}
+
+\begin{proposition} [Markov's inequality]
+  Let $X$ be a non-negative random variable. Then, given $\lambda > 0$, we have
+  \[\prob{X \geq \lambda} \leq \frac{\E{X}}{\lambda}\]
+\end{proposition}
+
+\begin{proposition} [Generalized Markov's inequality]
+  Let $X$ be a non-negative random variable. Then, given $\lambda > 0$ and integer $k \geq 1$, we have
+  \[\prob{X \geq \lambda} \leq \frac{\E{X^k}}{\lambda^k}\]
+\end{proposition}
+
+\begin{proposition} [Chebyshev's inequality]
+  Let $X$ be a random variable with mean $\mu$ and variance $\sigma^2$. Then, given $\lambda > 0$, we have
+  \[\prob{\left\lvert X - \mu\right\rvert \geq \lambda } \leq \frac{\sigma^2}{\lambda^2}\]
+\end{proposition}
+
+\begin{proposition} [Chernoff bound]
+  Let $X$ be a random variable. Then, given $\lambda > 0$, we have
+  \[\prob{X \geq \lambda} \leq \inf_{t > 0}(e^{-t\lambda}M_X(t))\]
+\end{proposition}
+
+\begin{theorem} [The Weak Law of Large Numbers]
+  Let $X_1, X_2, \cdots$ be an i.i.d. sequence of random variables with finite mean $\mu$. Then,
+  \[\bar{X} = \frac{1}{n} \sum_{j = 1}^{n}{X_j \rightarrow \mu} \text{ as } n \rightarrow \infty \]
+\end{theorem}
+
+\subsection{The MGF Technique}
+
+\begin{proposition}
+  Let $X_1, X_2, \cdots, X_n$ be a sequence of independent random variables and let $a_1, a_2, \cdots, a_n \in \R$. Then the random
+  \[Y = \sum_{j = 1}^{n}{a_jX_j} \]
+  has MGF
+  \[M_Y(t) = \prod_{j = 1}^{n}{M_{X_j}(a_jt)}\]
+  whenever it is well-defined.
+\end{proposition}
+
+\begin{proposition}
+  Let $X, Y$ be continuous random variables with MGFs $M_X(t)$ and $M_Y(t)$. Suppose that for some $h > 0$ and all $t\in(-h, h)$, we have
+  \[M_X(t) = M_Y(t)\]
+  Then, $X$ and $Y$ are identically distributed.
+\end{proposition}
+
+\begin{proposition}
+  Let $X_1, X_2, \cdots, X_n$ be an i.i.d. sequence of random variables with common MGF $M(t)$. Then
+  \begin{align*}
+    M_{S_n}(t)     & = \left[M(t)\right]^n           \\
+    M_{\bar{X}}(t) & = \left[M(\frac{t}{n})\right]^n \\
+  \end{align*}
+\end{proposition}
+
+\begin{proposition} [Limiting MGF determines the distribution]
+  Let $X_1, X_2, \cdots, X_n$ and $X$ be random variables. Suppose that for some $h > 0$ and all $t \in (-h, h)$, we have
+  \[M_{X_n}(t) \rightarrow M_X(t) \text{ as } n \rightarrow \infty\]
+  Then, $X_n \rightarrow X$ in distribution as $n \rightarrow \infty$.
+\end{proposition}
+
+\begin{theorem} [The Central Limit Theorem]
+  Let $X_1, X_2, \cdots, X_n$ be an i.i.d. sequence of random variables with finite mean $\mu$ and variance $\sigma^2$. Then,
+  \[\frac{\bar{X} - \mu}{\sigma / \sqrt{n}} \rightarrow \norm{0}{1} \text{ in distribution as } n \rightarrow \infty\]
+\end{theorem}
+
+\begin{proposition} [DeMoivre-Laplace Correction]
+  Let $X\bin{n, p}$. Then, we have
+  \begin{align*}
+    \prob{X \leq \ell}        & \approx \Phi \left(\frac{\ell + \frac{1}{2} - np}{\sqrt{np(1-p)}}\right)                                                                 \\
+    \prob{X \geq k}           & \approx 1 - \Phi \left(\frac{k - \frac{1}{2} - np}{\sqrt{np(1-p)}}\right)                                                                \\
+    \prob{k \leq X \leq \ell} & \approx \Phi \left(\frac{\ell + \frac{1}{2} - np}{\sqrt{np(1-p)}}\right) - \Phi \left(\frac{k - \frac{1}{2} - np}{\sqrt{np(1-p)}}\right) \\
+  \end{align*}
+\end{proposition}
+
+\end{document}
